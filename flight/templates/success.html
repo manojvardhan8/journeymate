@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search Results</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="sticky-header">
+            <div class="container header-container">
+                <a href="/" class="logo">
+                    <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+                </a>
+
+                <nav class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="{% url 'about' %}" class="nav-link">About</a>
+                    <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                </nav>
+
+                <a href="{% url 'login' %}" class="get-started-button desktop-only">
+                    Get Started
+                </a>
+
+                <button
+                    class="mobile-menu-toggle"
+                    aria-label="Toggle mobile menu"
+                >
+                    <span class="menu-icon">☰</span>
+                </button>
+            </div>
+
+            <div class="mobile-menu hidden">
+                <a href="/" class="mobile-link">Home</a>
+                <a href="{% url 'about' %}" class="mobile-link">About</a>
+                <a href="{% url 'contact' %}" class="mobile-link">Contact</a>
+                <a href="{% url 'login' %}" class="mobile-button">
+                    Get Started
+                </a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="search-summary">
+                <div class="journey-details">
+                    <h1>Available Flights</h1>
+                    <div class="route">
+                        <span class="source">{{ flight_details.0.source }}</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="destination">{{ flight_details.0.dest }}</span>
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>{{ flight_details.0.date }}</span>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn btn-secondary"><i class="fas fa-filter"></i> Filter</button>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle">
+                            <span>Sort by: Price</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="search-results">
+                <div class="flight-cards" id="flight-results">
+                    <!-- Flight cards will be populated dynamically or via template -->
+                    <!-- If flights exists, show them -->
+                    {% for flight in flight_details %}
+                    <div class="flight-card">
+                        <div class="flight-info">
+                            <div class="airline">
+                                <img src="https://same-assets.com/images/airlines/delta.png" alt="Airline Logo" class="airline-logo">
+                                <span class="airline-name">{{flight.flight_name}}</span>
+                            </div>
+                            <div class="flight-details">
+                                <div class="time-route">
+                                    <div class="time">
+                                        
+                                    </div>
+                                    <div class="route-line">
+                                        <div class="dot"></div>
+                                        <div class="line"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="airports">
+                                        <span class="airport-code">{{flight.source_iata}}</span>
+                                        <span class="airport-code">{{flight.dest_iata}}</span>
+                                    </div>
+                                </div>
+                                <div class="flight-number">
+                                    <span>Flight {{flight.Flight}}</span>
+                                    <span class="cabin-class">Economy</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flight-price-actions">
+                            <div class="availability">
+                                <span class="tickets-left">{{flight.Remaining_seats}} seats left</span>
+                            </div>
+                            <div class="price">$299</div>
+                            <button class="btn btn-cta">Select</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- No flights template -->
+                    <div class="no-flights" style="display: none;">
+                        <div class="no-results-icon">
+                            <i class="fas fa-plane-slash"></i>
+                        </div>
+                        <h3>No flights available</h3>
+                        <p>We couldn't find any flights for the selected route and date.</p>
+                        <button class="btn btn-primary">Modify Search</button>
+                    </div>
+                </div>
+
+                <aside class="flight-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Price Trends</h3>
+                        <div class="price-chart">
+                            <div class="chart-placeholder">
+                                <div class="bar" style="height: 30%"></div>
+                                <div class="bar" style="height: 50%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                                <div class="bar" style="height: 40%"></div>
+                                <div class="bar active" style="height: 60%"></div>
+                                <div class="bar" style="height: 80%"></div>
+                                <div class="bar" style="height: 65%"></div>
+                            </div>
+                            <div class="chart-days">
+                                <span>M</span>
+                                <span>T</span>
+                                <span>W</span>
+                                <span>T</span>
+                                <span class="active">F</span>
+                                <span>S</span>
+                                <span>S</span>
+                            </div>
+                        </div>
+                        <div class="price-tip">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Prices are likely to increase in the next 24 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Travel Tips</h3>
+                        <ul class="tip-list">
+                            <li><i class="fas fa-clock"></i> Arrive at the airport at least 2 hours before departure</li>
+                            <li><i class="fas fa-passport"></i> Check passport validity before traveling</li>
+                            <li><i class="fas fa-suitcase"></i> Most airlines allow one carry-on bag</li>
+                        </ul>
+                    </div>
+                </aside>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-logo">
+                            <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+                        </div>
+                        <p class="footer-tagline">
+                            Never miss the best time to book your tickets.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="footer-title">Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="footer-title">Contact</h3>
+                        <address class="footer-address">
+                            <p>123 Travel Street</p>
+                            <p>Journey City, JR 12345</p>
+                            <p class="mt-2">
+                                <a href="mailto:info@JourneyMate.com">info@JourneyMate.com</a>
+                            </p>
+                        </address>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copyright">
+                        &copy; <span id="current-year">2025</span> JourneyMate. All rights reserved.
+                    </p>
+                    <div class="footer-legal">
+                        <a href="/privacy.html">Privacy Policy</a>
+                        <a href="/terms.html">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="src/main.ts" type="module"></script>
+</body>
+</html>

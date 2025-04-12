@@ -1,0 +1,212 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - JourneyMate</title>
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fef1e6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      padding: 2rem 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .form-box {
+      align-items: center;
+      background: white;
+      border-radius: 10px;
+      padding: 40px 30px;
+      width: 320px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .form-box h2 {
+      font-weight: 700;
+      color: #999;
+      margin-bottom: 5px;
+    }
+
+    .underline {
+      display: block;
+      width: 20px;
+      height: 4px;
+      background-color: #f6ae56;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9em;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #eee;
+      padding: 8px 0;
+      margin-bottom: 10px;
+      outline: none;
+      font-size: 1em;
+      color: #aaa;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #7889f9;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1em;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    .login-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    .login-text a {
+      color: #3b6ffb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="sticky-header">
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="{% url 'about' %}" class="nav-link">About</a>
+        <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Removed Get Started Button (desktop) -->
+      
+      <button 
+        class="mobile-menu-toggle"
+        aria-label="Toggle mobile menu"
+      >
+        <span class="menu-icon">☰</span>
+      </button>
+    </div>
+
+    <div class="mobile-menu hidden">
+      <a href="{% url 'home' %}" class="mobile-link">Home</a>
+      <a href="{% url 'about' %}" class="mobile-link">About</a>
+      <a href="{% url 'contact' %}" class="mobile-link">Contact</a>
+      
+      <!-- Removed Get Started Button (mobile) -->
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Welcome.</h1>
+      <div class="form-box">
+        <h2>Create your account</h2>
+        <span class="underline"></span>
+        <form>
+          <label>Username</label>
+          <input type="text" placeholder="lan_hikari" />
+          <label>Email</label>
+          <input type="email" placeholder="hub@acdc.net" />
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" />
+          <button type="submit">Sign Up!</button>
+        </form>
+        <p class="login-text">Already have an account? <a href="#">Login</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+          </div>
+          <p class="footer-tagline">
+            Never miss the best time to book your tickets.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="footer-title">Contact</h3>
+          <address class="footer-address">
+            <p>123 Travel Street</p>
+            <p>Journey City, JR 12345</p>
+            <p class="mt-2">
+              <a href="mailto:info@JourneyMate.com">info@JourneyMate.com</a>
+            </p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="current-year">2025</span> Journey Mate s reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - JourneyMate</title>
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  <meta name="description" content="Learn about the TicketAlert team and mission" />
+  <style>
+    .about-header {
+      background: linear-gradient(to right, var(--sky-blue), var(--midnight-blue));
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .about-mission {
+      padding: 4rem 0;
+      background-color: white;
+    }
+
+    .about-mission-content {
+      max-width: 48rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-mission-content p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      color: #444;
+    }
+
+    .about-stats {
+      padding: 4rem 0;
+      background-color: var(--cloud-gray);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .stat-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-number.skyblue {
+      color: var(--sky-blue);
+    }
+
+    .stat-number.forest-green {
+      color: var(--forest-green);
+    }
+
+    .stat-number.sunset-orange {
+      color: var(--sunset-orange);
+    }
+
+    .stat-number.midnight-blue {
+      color: var(--midnight-blue);
+    }
+
+    .stat-label {
+      color: #555;
+      font-size: 1.125rem;
+    }
+
+    .team-section {
+      padding: 4rem 0;
+      background-color: white;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+    }
+
+    .team-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      background-color: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .team-photo svg {
+      color: #999;
+    }
+
+    .team-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .team-role {
+      color: var(--sky-blue);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .team-bio {
+      color: #666;
+      max-width: 20rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="sticky-header">
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="{% url 'about' %}" class="nav-link">About</a>
+        <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="{% url 'login' %}" class="get-started-button desktop-only">
+        Get Started
+      </a>
+
+      <button 
+        class="mobile-menu-toggle"
+        aria-label="Toggle mobile menu"
+      >
+        <span class="menu-icon">☰</span>
+      </button>
+    </div>
+
+    <div class="mobile-menu hidden">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="{% url 'about' %}" class="mobile-link">About</a>
+      <a href="{% url 'contact' %}" class="mobile-link">Contact</a>
+      <a href="{% url 'login' %}" class="mobile-button">
+        Get Started
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- About Header -->
+    <section class="about-header">
+      <div class="container">
+        <h1>About JourneyMate</h1>
+        <p>Learn about our mission and the team behind the alerts.</p>
+      </div>
+    </section>
+
+    <!-- About Mission -->
+    <section class="about-mission">
+      <div class="container">
+        <div class="about-mission-content">
+          <h2 class="section-title">Our Mission</h2>
+          <p>
+            At JourneyMate, we believe everyone deserves to travel at the best possible price. We started in 2022 with a simple idea: use data science to help travelers find the optimal time to book their tickets.
+          </p>
+          <p>
+            Our platform analyzes millions of ticket prices and availability data points every day to provide timely alerts when prices drop or seats are running low. We're passionate about helping you save money and secure the perfect seats for your journey.
+          </p>
+          <p>
+            Whether you're planning a business trip, family vacation, or a quick weekend getaway, our mission is to take the guesswork out of travel planning and ensure you never miss the perfect time to book.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Stats -->
+    <section class="about-stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number skyblue">2.5M+</div>
+            <div class="stat-label">Active Users</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number forest-green">$43M</div>
+            <div class="stat-label">Saved for Customers</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number sunset-orange">98.2%</div>
+            <div class="stat-label">Prediction Accuracy</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number midnight-blue">150+</div>
+            <div class="stat-label">Supported Cities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="container">
+        <h2 class="section-title text-center mb-8">Meet Our Team</h2>
+        
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="team-photo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="team-name">Manoj Vardhan</h3>
+            <p class="team-role">Team Lead</p>
+            <p class="team-bio">Former data scientist with a passion for making travel more accessible and affordable for everyone.</p>
+          </div>
+          
+          <div class="team-member">
+            <div class="team-photo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="team-name">Zafar Abdul</h3>
+            <p class="team-role">Co-lead</p>
+            <p class="team-bio">Machine learning expert who built our price prediction algorithm from the ground up.</p>
+          </div>
+          
+          <div class="team-member">
+            <div class="team-photo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="team-name">Rakesh and Sai</h3>
+            <p class="team-role">Team members</p>
+            <p class="team-bio">Focuses on creating intuitive user experiences that make booking travel a breeze.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+          </div>
+          <p class="footer-tagline">
+            Never miss the best time to book your tickets.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="footer-title">Contact</h3>
+          <address class="footer-address">
+            <p>123 Travel Street</p>
+            <p>Journey City, JR 12345</p>
+            <p class="mt-2">
+              <a href="mailto:info@ticketalert.com">info@ticketalert.com</a>
+            </p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="current-year">2025</span> TicketAlert. All rights reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

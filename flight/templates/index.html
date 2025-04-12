@@ -1,0 +1,356 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journey Mate - Never Miss the Best Time to Book</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <meta name="description" content="JourneyMate helps you find the perfect time to book your tickets for trains and planes" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="sticky-header">
+      <div class="container header-container">
+        <a href="/" class="logo">
+          <span class="logo-blue">Journey</span><span class="logo-green">Mate
+          </span>
+        </a>
+
+        <nav class="nav-links">
+          <a href="{% url 'home' %}" class="nav-link">Home</a>
+          <a href="{% url 'about' %}" class="nav-link">About</a>
+          <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+        </nav>
+
+        <a href="{% url 'login' %}" class="get-started-button desktop-only">
+          Get Started
+        </a>
+
+        <button 
+          class="mobile-menu-toggle"
+          aria-label="Toggle mobile menu"
+        >
+          <span class="menu-icon">☰</span>
+        </button>
+      </div>
+
+      <div class="mobile-menu hidden">
+        <a href="/" class="mobile-link">Home</a>
+        <a href="{% url 'about' %}" class="mobile-link">About</a>
+        <a href="{% url 'contact' %}" class="mobile-link">Contact</a>
+        <a href="{% url 'login' %}" class="mobile-button">
+          Get Started
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Introduction Section -->
+      <section class="introduction">
+        <div class="container">
+          <div class="text-center">
+            <h1 class="title">
+              Your Ultimate Travel Planning Partner
+            </h1>
+            <p class="description">
+              JourneyMate helps you find the perfect time to book your tickets. Whether you're traveling by train or plane, 
+              we'll alert you when prices drop or availability becomes limited.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transport Selection -->
+      <section class="transport-selection">
+        <div class="container">
+          <h2 class="section-title">Choose Your Transport Type</h2>
+          
+          <div class="transport-options">
+            <div class="transport-option" data-type="flight">
+              <div class="icon-circle flight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
+                </svg>
+              </div>
+              <span class="transport-label">Flight</span>
+              <p class="transport-description">Get alerts for flight tickets and best prices</p>
+            </div>
+
+            <div class="transport-option" data-type="train">
+              <div class="icon-circle train">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 19h8m-8 0l-2 2m10-2l2 2M4 6a1 1 0 011-1h14a1 1 0 011 1v11a4 4 0 01-4 4H8a4 4 0 01-4-4V6z" />
+                  </svg>
+              </div>
+              <span class="transport-label">Train</span>
+              <p class="transport-description">Get alerts for train tickets and availability</p>
+            </div>
+          </div>
+
+          <div class="continue-button-container hidden">
+          
+            <button class="continue-button">
+              Continue with <span class="selected-transport"></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features">
+        <div class="container">
+          <div class="section-header">
+            <h2>Intelligent Travel Planning</h2>
+            <p>
+              Our platform uses advanced analytics to predict the optimal return dates for your journey, saving you time and money.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon sky-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <h3>Smart Date Prediction</h3>
+              <p>Our algorithm analyzes travel patterns to suggest optimal return dates for your journey.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon forest-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <h3>Time Saving</h3>
+              <p>Stop spending hours comparing return options. Get instant suggestions based on your travel plans.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon sunset-orange">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+              </div>
+              <h3>Price Trends</h3>
+              <p>See price trends for different return dates and choose the most cost-effective option.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon midnight-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                  <path d="M3 9h18"></path>
+                  <path d="M9 21V9"></path>
+                </svg>
+              </div>
+              <h3>Statistical Analysis</h3>
+              <p>Data-driven recommendations based on thousands of travel records and patterns.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transport Tabs Section -->
+      <section class="transport-tabs">
+        <div class="container">
+          <div class="section-header">
+            <h2>How Our Alerts Work</h2>
+            <p>We monitor ticket prices and availability to help you book at the perfect time.</p>
+          </div>
+          
+          <div class="tabs-container">
+            <div class="tabs-list">
+              <button class="tab-button active-flight" data-tab="flight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
+                </svg>
+                Flight Alerts
+              </button>
+              <button class="tab-button" data-tab="train">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 9a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v6a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5z"></path>
+                  <path d="M10 9h4"></path>
+                  <path d="m7 14 10-5"></path>
+                </svg>
+                Train Alerts
+              </button>
+            </div>
+            
+            <div class="tab-content">
+              <div class="tab-grid">
+                <div class="tab-info">
+                  <h3 id="tab-title" class="text-sky-blue">Flight Price Alerts</h3>
+                  <p id="tab-description">Our system monitors flight prices 24/7 and notifies you when prices drop or tickets are running low.</p>
+                  
+                  <ul class="feature-list">
+                    <li class="feature-item">
+                      <div id="feature-icon-1" class="feature-item-icon flight-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 2v6a2 2 0 0 0 2 2h6"></path>
+                          <path d="M5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-1"></path>
+                          <path d="M16 4h6a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H9"></path>
+                          <path d="M8.5 10 5 12l3.5 2"></path>
+                        </svg>
+                      </div>
+                      <div class="feature-item-content">
+                        <h4>Price Drop Notifications</h4>
+                        <p id="feature-text-1">Get instant alerts when flight prices fall below average</p>
+                      </div>
+                    </li>
+                    <li class="feature-item">
+                      <div id="feature-icon-2" class="feature-item-icon flight-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
+                      <div class="feature-item-content">
+                        <h4>Limited Availability Warning</h4>
+                        <p>We'll notify you when seats are filling up quickly</p>
+                      </div>
+                    </li>
+                    <li class="feature-item">
+                      <div id="feature-icon-3" class="feature-item-icon flight-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                      </div>
+                      <div class="feature-item-content">
+                        <h4>Best Booking Time</h4>
+                        <p>Learn the optimal day to book your tickets</p>
+                      </div>
+                    </li>
+                  </ul>
+                  
+                  <button id="set-alert-button" class="primary-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                    </svg>
+                    Set Flight Alert
+                  </button>
+                </div>
+                
+                <div id="alert-example" class="alert-example">
+                  <div class="alert-example-header">
+                    <svg id="alert-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sky-blue-icon">
+                      <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
+                    </svg>
+                    <h4 id="alert-title">Flight Alert Example</h4>
+                  </div>
+                  
+                  <div class="alert-example-content">
+                    <div id="alert-type" class="alert-type flight-alert">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                      </svg>
+                      Price Drop Alert
+                    </div>
+                    
+                    <div class="alert-route">
+                      <div id="route-text">New York → London</div>
+                      <div class="font-medium">June 15, 2025</div>
+                    </div>
+                    
+                    <div class="alert-prices">
+                      <div class="price-row">
+                        <div class="text-sm text-gray-500">Previous Price</div>
+                        <div id="old-price" class="old-price">$750</div>
+                      </div>
+                      
+                      <div class="price-row">
+                        <div class="text-sm font-medium">Current Price</div>
+                        <div id="new-price" class="new-price">$580</div>
+                      </div>
+                    </div>
+                    
+                    <div class="alert-footer">
+                      Limited time offer - <span id="seats-remaining">8</span> seats remaining at this price
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="cta">
+        <div class="container">
+          <h2>Ready to Plan Your Journey?</h2>
+          <p>Take the guesswork out of return travel planning and get data-driven predictions for your next trip.</p>
+          <a href="/login.html" class="primary-button">
+            Get Started Now
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">
+              <span class="logo-blue">Ticket</span><span class="logo-green">Alert</span>
+            </div>
+            <p class="footer-tagline">
+              Never miss the best time to book your tickets.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="{% url 'about' %}">About</a></li>
+              <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="footer-title">Contact</h3>
+            <address class="footer-address">
+              <p>123 Travel Street</p>
+              <p>Journey City, JR 12345</p>
+              <p class="mt-2">
+                <a href="mailto:info@JourneyMate.com">info@JourneyMate.com</a>
+              </p>
+            </address>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            &copy; <span id="current-year">2025</span> JourneyMate. All rights reserved.
+          </p>
+          <div class="footer-legal">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+
+  </body>
+</html>

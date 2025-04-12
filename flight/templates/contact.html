@@ -1,0 +1,280 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - TicketAlert</title>
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  <meta name="description" content="Contact the TicketAlert team" />
+  <style>
+    .contact-header {
+      background: linear-gradient(to right, var(--sky-blue), var(--midnight-blue));
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .contact-form-container {
+      padding: 4rem 0;
+      background-color: white;
+    }
+
+    .contact-form {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 0.25rem;
+    }
+
+    .form-group textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    .contact-info {
+      background-color: var(--cloud-gray);
+      padding: 4rem 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-text {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-link {
+      color: var(--sky-blue);
+      font-weight: 500;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="sticky-header">
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="{% url 'home' %}" class="nav-link">Home</a>
+        <a href="{% url 'about' %}" class="nav-link">About</a>
+        <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="{% url 'login' %}" class="get-started-button desktop-only">
+        Get Started
+      </a>
+
+      <button 
+        class="mobile-menu-toggle"
+        aria-label="Toggle mobile menu"
+      >
+        <span class="menu-icon">☰</span>
+      </button>
+    </div>
+
+    <div class="mobile-menu hidden">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="{% url 'about' %}" class="mobile-link">About</a>
+      <a href="{% url 'contact' %}" class="mobile-link">Contact</a>
+      <a href="{% url 'login' %}" class="mobile-button">
+        Get Started
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Header -->
+    <section class="contact-header">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Reach out with any questions or feedback.</p>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-container">
+      <div class="container">
+        <div class="contact-form">
+          <h2 class="section-title text-center">Send Us a Message</h2>
+          
+          <form>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" required placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" required placeholder="Enter your email">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" required>
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Customer Support</option>
+                <option value="feedback">Feedback</option>
+                <option value="partnership">Partnership Opportunities</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" required placeholder="Enter your message"></textarea>
+            </div>
+            
+            <button type="submit" class="primary-button">Submit Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sky-blue">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <h3 class="contact-title">Phone</h3>
+            <p class="contact-text">Customer Support</p>
+            <a href="tel:+1234567890" class="contact-link">+1 (234) 567-890</a>
+          </div>
+          
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="forest-green">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <h3 class="contact-title">Email</h3>
+            <p class="contact-text">Send us a message</p>
+            <a href="mailto:info@ticketalert.com" class="contact-link">info@ticketalert.com</a>
+          </div>
+          
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sunset-orange">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="contact-title">Office</h3>
+            <p class="contact-text">123 Travel Street</p>
+            <p class="contact-link">Journey City, JR 12345</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <span class="logo-blue">Journey</span><span class="logo-green">Mate</span>
+          </div>
+          <p class="footer-tagline">
+            Never miss the best time to book your tickets.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="footer-title">Contact</h3>
+          <address class="footer-address">
+            <p>123 Travel Street</p>
+            <p>Journey City, JR 12345</p>
+            <p class="mt-2">
+              <a href="mailto:info@ticketalert.com">info@ticketalert.com</a>
+            </p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="current-year">2025</span> JourneyMate. All rights reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
