@@ -18,7 +18,3 @@ EXPOSE 8000
 
 # Default command (change this based on your app, e.g., Flask/Django)
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
-##hi  i am rakesh , i love nehal and want to marry her and lead happy life .
-#hi frnds
-#hi frnds
-EXPOSE 8000
