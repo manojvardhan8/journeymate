@@ -13,9 +13,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os 
 from pathlib import Path
-from decouple import Config, RepositoryEnv
+from decouple import Config, AutoConfig, RepositoryEnv
 
-config = Config(RepositoryEnv('.env', default=''))
+# Check if a .env file exists in the base directory
+# BASE_DIR is already defined in your settings.py
+if os.path.exists(os.path.join(BASE_DIR, '.env')):
+    # If it exists (like in local dev), load it specifically
+    config = Config(RepositoryEnv(os.path.join(BASE_DIR, '.env')))
+else:
+    # If it does NOT exist (like on Render), use AutoConfig
+    # which ONLY reads from environment variables.
+    config = AutoConfig()
+
 
 
 SECRET_KEY = config('SECRET_KEY')
