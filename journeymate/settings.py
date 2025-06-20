@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 from decouple import Config, RepositoryEnv
 
-config = Config(RepositoryEnv('.env'))
+config = Config(RepositoryEnv('.env', default=''))
 
 
 SECRET_KEY = config('SECRET_KEY')
