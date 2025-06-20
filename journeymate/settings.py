@@ -17,15 +17,14 @@ from decouple import Config, AutoConfig, RepositoryEnv
 
 # Check if a .env file exists in the base directory
 # BASE_DIR is already defined in your settings.py
-if os.path.exists(os.path.join(BASE_DIR, '.env')):
-    # If it exists (like in local dev), load it specifically
-    config = Config(RepositoryEnv(os.path.join(BASE_DIR, '.env')))
+BASE_DIR = Path(__file__).resolve().parent.parent
+env_file_path = BASE_DIR / '.env'
+if env_file_path.exists():
+    # LOCAL: .env file was found. Load config from it.
+    config = Config(RepositoryEnv(env_file_path))
 else:
-    # If it does NOT exist (like on Render), use AutoConfig
-    # which ONLY reads from environment variables.
+    # PRODUCTION: .env file was NOT found. Load from system environment variables.
     config = AutoConfig()
-
-
 
 SECRET_KEY = config('SECRET_KEY')
 # The cast=bool is important to convert the string 'False' to a boolean
@@ -33,7 +32,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1').split(',')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -88,11 +86,14 @@ WSGI_APPLICATION = 'journeymate.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url  # Make sure this import is here
+
+# This one line reads your DATABASE_URL and configures the database for either
+# local Postgres (from .env) or production Postgres (from Render's env vars).
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -129,7 +130,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Static files settings
 STATIC_URL = 'static/'
@@ -147,6 +148,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AMADEUS_API_KEY = 'jMEoOVo5fD3RryDWNyFAmGBR1ahCwNUd'
-AMADEUS_API_SECRET = 'oQP2gHTRrpcUeV9d'
+AMADEUS_API_KEY = config('AMADEUS_API_KEY')
+AMADEUS_API_SECRET = config('AMADEUS_API_SECRET')
 
