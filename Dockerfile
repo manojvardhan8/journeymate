@@ -22,6 +22,8 @@ COPY . .
 # 6. Expose the port Gunicorn will run on
 EXPOSE 8000
 
+RUN python manage.py collectstatic --no-input
+
 # 7. Set the command to run in production
 #    This uses Gunicorn, your production-ready server.
 #    Replace 'your_project_name' with the folder containing your wsgi.py
