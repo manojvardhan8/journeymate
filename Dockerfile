@@ -24,7 +24,8 @@ EXPOSE 8000
 ARG DJANGO_SECRET_KEY=dummy-secret-key-for-building
 ENV SECRET_KEY=$DJANGO_SECRET_KEY
 
-
+ARG DATABASE_URL="sqlite:////tmp/db.sqlite3"  # <--- ADD THIS
+ENV DATABASE_URL=$DATABASE_URL                
 RUN python manage.py collectstatic --no-input
 
 # 7. Set the command to run in production
