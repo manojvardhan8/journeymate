@@ -1,0 +1,34 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    build: . # Tells Compose to build from the Dockerfile in this directory
+    command: python manage.py runserver 0.0.0.0:8000 # Use development server for local testing
+    volumes:
+      - .:/app # Mounts your local code into the container for live-reloading
+    ports:
+      - "8000:8000"
+    environment:
+      # These are automatically read from your .env file!
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - DATABASE_URL=${DATABASE_URL}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+    depends_on:
+      - db # Tells the 'web' service to wait for the 'db' service to start
+
+  db:
+    image: mysql:8.0 # Pulls the official MySQL image
+    volumes:
+      - mysql_data:/var/lib/mysql # This ensures your database data persists
+    environment:
+      # Set credentials for the database container.
+      # These MUST MATCH the credentials in your DATABASE_URL!
+      - MYSQL_ROOT_PASSWORD=a_very_strong_root_password
+      - MYSQL_DATABASE=myprojectdb
+      - MYSQL_USER=myprojectuser
+      - MYSQL_PASSWORD=a_strong_password
+
+volumes:
+  mysql_data:

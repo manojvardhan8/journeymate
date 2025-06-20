@@ -1,0 +1,19 @@
+# .dockerignore
+
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Environment files
+.env
+
+# Python stuff
+__pycache__/
+*.pyc
+venv/
+
+# Local static/media files
+staticfiles/
+mediafiles/
