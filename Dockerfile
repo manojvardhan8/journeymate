@@ -21,6 +21,9 @@ COPY . .
 
 # 6. Expose the port Gunicorn will run on
 EXPOSE 8000
+ARG DJANGO_SECRET_KEY=dummy-secret-key-for-building
+ENV SECRET_KEY=$DJANGO_SECRET_KEY
+
 
 RUN python manage.py collectstatic --no-input
 
