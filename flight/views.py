@@ -12,6 +12,8 @@ def login(request):
     return render(request,'login.html')
 def about(request):
     return render(request,'about.html')
+def success(request):
+    return render(request,'success.html')
 def find_source(mp,source):
     for ele in mp:
         if mp[ele]['city']==source:
